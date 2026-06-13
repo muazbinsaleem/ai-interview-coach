@@ -1,0 +1,25 @@
+# ── Phase 1 — Foundation & Auth ──────────────────────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+supabase==2.4.6
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.3.0
+pydantic-settings==2.2.1
+python-dotenv==1.0.1
+httpx==0.27.0
+python-multipart==0.0.9
+
+# ── Phase 2 — Resume Upload ───────────────────────────────────────────────────
+pypdf==4.0.1  # Alternative to PyMuPDF, works with Python 3.14
+
+# ── Phase 3 — Interview Model (Trained ML Model) ─────────────────────────────
+scikit-learn==1.4.2
+joblib==1.3.2
+
+# ── Phase 4 — AI Enhancement ─────────────────────────────────────────────────
+google-generativeai==0.7.0  # Gemini API support
+
+# ── Testing ───────────────────────────────────────────────────────────────────
+pytest==8.2.0
+pytest-asyncio==0.23.6
