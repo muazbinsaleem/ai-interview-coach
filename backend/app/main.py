@@ -70,9 +70,25 @@ app = FastAPI(
 )
 
 # ── CORS ──────────────────────────────────────────────────────────────────────
+# Always allow localhost for local development.
+_cors_origins: list[str] = ["http://localhost:3000"]
+
+# Pull in the primary frontend URL (e.g. Vercel / Netlify deployment).
+if settings.frontend_url:
+    _cors_origins.append(settings.frontend_url.rstrip("/"))
+
+# Pull in any additional comma-separated origins from CORS_ORIGINS.
+if settings.cors_origins:
+    for _origin in settings.cors_origins.split(","):
+        _origin = _origin.strip().rstrip("/")
+        if _origin and _origin not in _cors_origins:
+            _cors_origins.append(_origin)
+
+logger.info("CORS allowed origins: %s", _cors_origins)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # Tighten to specific origins in production
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

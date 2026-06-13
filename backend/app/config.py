@@ -61,6 +61,16 @@ class Settings(BaseSettings):
         description="Path to the trained interview model file"
     )
 
+    # ── CORS / Frontend ───────────────────────────────────────────────────────
+    frontend_url: str = Field(
+        default="",
+        description="Primary deployed frontend URL (e.g. https://myapp.vercel.app)"
+    )
+    cors_origins: str = Field(
+        default="",
+        description="Comma-separated list of additional allowed CORS origins"
+    )
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
