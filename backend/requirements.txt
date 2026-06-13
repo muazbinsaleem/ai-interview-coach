@@ -12,9 +12,10 @@ python-multipart==0.0.9
 
 # ── Phase 2 — Resume Upload ───────────────────────────────────────────────────
 pypdf==4.0.1  # Alternative to PyMuPDF, works with Python 3.14
+pymupdf==1.24.1
 
 # ── Phase 3 — Interview Model (Trained ML Model) ─────────────────────────────
-scikit-learn==1.4.2
+scikit-learn==1.4.2post1
 joblib==1.3.2
 
 # ── Phase 4 — AI Enhancement ─────────────────────────────────────────────────
