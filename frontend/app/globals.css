@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+/* ─── CSS Custom Properties ─────────────────────────────────────────────── */
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Dark mode defaults */
+  --bg-base: #0f0f0f;
+  --bg-surface: #1a1a1a;
+  --bg-elevated: #242424;
+  --border: #2e2e2e;
+  --border-subtle: #1e1e1e;
+  --accent-blue: #2563eb;
+  --accent-blue-hover: #1d4ed8;
+  --accent-glow: rgba(37, 99, 235, 0.15);
+  --text-primary: #f5f5f5;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  --success: #16a34a;
+  --success-bg: rgba(22, 163, 74, 0.08);
+  --error: #ef4444;
+  --error-bg: rgba(239, 68, 68, 0.08);
+  --warning: #f59e0b;
+}
+
+:root.light {
+  --bg-base: #fafafa;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f4f4f5;
+  --border: #e4e4e7;
+  --border-subtle: #f0f0f1;
+  --text-primary: #09090b;
+  --text-secondary: #71717a;
+  --text-muted: #a1a1aa;
+  --accent-glow: rgba(37, 99, 235, 0.08);
+  --success-bg: rgba(22, 163, 74, 0.06);
+  --error-bg: rgba(239, 68, 68, 0.06);
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ─── Custom scrollbar ──────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+:root.light ::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+}
+
+:root.light ::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+/* ─── Focus ─────────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+/* ─── Waveform animation ─────────────────────────────────────────────────── */
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.waveform-bar {
+  animation: wave 1s ease-in-out infinite;
+}
+.waveform-bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.waveform-bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.waveform-bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.waveform-bar:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* ─── Mic pulse ─────────────────────────────────────────────────────────── */
+
+@keyframes mic-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
+  }
+}
+
+.recording-pulse {
+  animation: mic-pulse 1.5s ease-in-out infinite;
+}
+
+/* ─── Dot pulse for badges ──────────────────────────────────────────────── */
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.dot-pulse {
+  animation: dot-pulse 1.6s ease-in-out infinite;
+}
+
+/* ─── Gradient glow for hero ────────────────────────────────────────────── */
+
+.hero-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 700px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(37, 99, 235, 0.12) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+:root.light .hero-glow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(37, 99, 235, 0.07) 0%,
+    transparent 70%
+  );
+}
+
+/* ─── Speaker animation ─────────────────────────────────────────────────── */
+
+@keyframes speaker-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.speaker-pulse {
+  animation: speaker-pulse 1s ease-in-out infinite;
+}
+
+/* ─── Utility: card hover glow ──────────────────────────────────────────── */
+
+.card-hover-glow {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover-glow:hover {
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Progress bar ──────────────────────────────────────────────────────── */
+
+.progress-bar-fill {
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Toggle switch ─────────────────────────────────────────────────────── */
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border);
+  border-radius: 22px;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-slider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: var(--accent-blue);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(18px);
+}
+
+/* ─── Score ring animation ──────────────────────────────────────────────── */
+
+@keyframes score-ring {
+  from {
+    stroke-dashoffset: 326.73;
+  }
+  to {
+    stroke-dashoffset: var(--target-offset);
+  }
+}
+
+/* ─── Collapsible expand ────────────────────────────────────────────────── */
+
+.expand-content {
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
