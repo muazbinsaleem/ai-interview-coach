@@ -1,0 +1,7 @@
+[tool.pyrefly]
+# Use the project virtualenv so pyrefly can resolve all installed packages.
+python_interpreter = "venv/Scripts/python.exe"
+
+# Only check the app source — ignore venv, tests, and generated files.
+project_includes = ["app"]
+project_excludes = ["venv", "tests", ".pytest_cache", "__pycache__"]
