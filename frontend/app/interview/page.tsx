@@ -450,9 +450,15 @@ export default function InterviewPage() {
     router.push("/results");
   }, [config, questions, allAnswers, currentIndex, stop, router]);
 
-  const handleReplayQuestion = () => {
-    if (currentQuestion) speak(currentQuestion.text);
-  };
+  const handleReplayQuestion = useCallback(() => {
+    if (!currentQuestion) return;
+    // Clear feedback so AnswerInput becomes visible again
+    setCurrentFeedback(null);
+    setAnswerText("");
+    resetTimer();
+    // Small delay so the answer area animates in before TTS starts
+    setTimeout(() => speak(currentQuestion.text), 400);
+  }, [currentQuestion, speak, resetTimer]);
 
   // ── Keyboard shortcuts ───────────────────────────────────────────────────────
   useEffect(() => {
